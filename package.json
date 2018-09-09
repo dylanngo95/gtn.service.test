@@ -1,0 +1,34 @@
+{
+  "name": "@gtn/service.test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "b": "npm run clear && npm run swagger && tsc",
+    "swagger": "tsoa swagger && tsoa routes",
+    "copy-swagger-ui": "ncp ./swagger/dist ./bin/swagger/dist",
+    "copy-swagger-json": "ncp ./swagger/output/swagger.json ./bin/swagger/output/swagger.json",
+    "clear": "vnrm bin",
+    "start": "node ./bin/src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "inversify": "^4.13.0",
+    "method-override": "^3.0.0",
+    "reflect-metadata": "^0.1.12",
+    "tsoa": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/method-override": "0.0.31",
+    "ncp": "^2.0.0",
+    "tslint": "^5.11.0",
+    "tslint-react-recommended": "^1.0.15",
+    "typescript": "^3.0.3",
+    "vnrm": "^0.0.11"
+  }
+}

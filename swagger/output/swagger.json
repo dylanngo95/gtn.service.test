@@ -1,0 +1,151 @@
+{
+	"basePath": "",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"User": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"email": {
+					"type": "string"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				}
+			},
+			"required": [
+				"id",
+				"email",
+				"createdAt"
+			],
+			"type": "object"
+		},
+		"TestAccount": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"address": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"users": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/User"
+					},
+					"x-nullable": true
+				},
+				"fields": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"id",
+				"name"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "@gtn/service.test",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/Accounts/Current": {
+			"get": {
+				"operationId": "Current",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/TestAccount"
+						}
+					}
+				},
+				"description": "Get the current account ",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/Accounts/Users": {
+			"get": {
+				"operationId": "GetUsers",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						}
+					}
+				},
+				"description": "Get a list of users for the account ",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/Users/{id}": {
+			"get": {
+				"operationId": "GetUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"format": "double",
+						"type": "number"
+					},
+					{
+						"in": "query",
+						"name": "name",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {},
+	"host": "localhost:3000"
+}
